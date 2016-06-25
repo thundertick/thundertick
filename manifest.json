@@ -1,0 +1,10 @@
+{
+  "name": "Omnibox Plus",
+  "manifest_version":2,
+  "version": "1.0",
+  "omnibox": { "keyword" : "`" },
+  "background": {
+    "page": "background.html"
+  },
+  "permissions":["tabs","history", "<all_urls>"]
+}

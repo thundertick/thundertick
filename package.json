@@ -1,0 +1,12 @@
+{
+  "name": "omniplus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "dependencies": {
+    "fuse.js": "^2.2.0"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
