@@ -1,5 +1,5 @@
 {
-  "name": "Omnibox Plus",
+  "name": "ThunderTick",
   "manifest_version":2,
   "version": "1.0",
   "omnibox": { "keyword" : "`" },
