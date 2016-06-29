@@ -78,3 +78,27 @@ chrome.omnibox.onInputEntered.addListener(function(selectedItem){
 			}
 		}
 });
+
+//Handle overlay
+chrome.omnibox.onInputChanged.addListener(function(text, suggest){
+	chrome.tabs.queryAsync({active:true})
+	.then(function(tab){
+		tab = tab[0];
+		return chrome.tabs.executeScriptAsync(tab.id,{
+			file:'overlay/construct.js',
+			runAt:'document_end'
+		});
+	});
+});
+
+chrome.omnibox.onInputCancelled.addListener(function(){
+	chrome.tabs.queryAsync({active:true})
+	.then(function(tab){
+		tab = tab[0];
+		return chrome.tabs.executeScriptAsync(tab.id,{
+			file:'overlay/destroy.js',
+			runAt:'document_end'
+		});
+	});
+
+});
