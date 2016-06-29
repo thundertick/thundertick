@@ -41,3 +41,5 @@ jspm_packages
 *.sublime-project
 
 .DS_Store
+
+bundle.js
