@@ -47,6 +47,20 @@ var API = {
 						var listener = this.onMessage.addListener(function(req){
 							if(req.type == "results"){
 								this.onMessage.removeListener(listener);
+								//Check results format
+									for(var i in req.body.results){
+										var result = req.body.results[i];
+										if(!result.name || !result.content || !result.title){
+											req.body.results = [];
+											this.postMessage({
+												type:"error",
+												body:{
+													error:"You are missing certain attributes in your results"
+												}
+											});
+										}
+									}
+								//
 								this.resolve(req.body.results);
 							}
 						}.bind(this));
