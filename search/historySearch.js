@@ -1,16 +1,19 @@
 var utils = require('../libs/utils.js');
 
 module.exports = {
-	regex:/^h(.+)/g,
+	regex:/^h(.+|$)/g,
 	answerRegex:/history:(.+)/,
 	tabs: [],
 	fuse: null,
+	message:"Searching your browser history",
 	onload: function(){
 
 	},
 	search: function(query){
 		this.query = this.regex.exec(query)[1];
 		this.regex.lastIndex = 0;
+		if(!this.query)
+			this.query = "";
 		return new Promise(function(resolve, reject){
 			chrome.history.searchAsync({text:this.query, maxResults: 5})
 			.then(function(results){

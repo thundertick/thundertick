@@ -5,6 +5,7 @@ searchEngines = [
 	require('./search/mute.js')
 ];
 var utils = require('./libs/utils.js');
+var overlayManager = require('./overlay/overlayManager.js')();
 
 chrome.omnibox.setDefaultSuggestion({
 	description:"Omnibox+"
@@ -31,6 +32,10 @@ var triggerSearch = function(text, suggest){
 		}
 		if(!Array.isArray(searchEngine.regex)){
 			if(text.match(searchEngine.regex) != null){
+				if(searchEngine.message)
+					overlayManager.changeMessage(searchEngine.message);
+				else
+					overlayManager.changeMessage("Thundertick");
 				searchFunctions.push(searchEngine.search(text));
 			}
 		} else {
@@ -77,28 +82,4 @@ chrome.omnibox.onInputEntered.addListener(function(selectedItem){
 				return searchEngine.suggestion(selectedItem);
 			}
 		}
-});
-
-//Handle overlay
-chrome.omnibox.onInputChanged.addListener(function(text, suggest){
-	chrome.tabs.queryAsync({active:true})
-	.then(function(tab){
-		tab = tab[0];
-		return chrome.tabs.executeScriptAsync(tab.id,{
-			file:'overlay/construct.js',
-			runAt:'document_end'
-		});
-	});
-});
-
-chrome.omnibox.onInputCancelled.addListener(function(){
-	chrome.tabs.queryAsync({active:true})
-	.then(function(tab){
-		tab = tab[0];
-		return chrome.tabs.executeScriptAsync(tab.id,{
-			file:'overlay/destroy.js',
-			runAt:'document_end'
-		});
-	});
-
 });

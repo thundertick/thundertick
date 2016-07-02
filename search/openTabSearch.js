@@ -1,6 +1,7 @@
 module.exports = {
 	regex:/^find\s([0-9A-Za-z\s]+)/g,
 	answerRegex:/tab-found:(\d+)/,
+	message:"Finding text in all open tabs",
 	onload: function(){
 
 	},

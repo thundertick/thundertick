@@ -1,5 +1,7 @@
+var d = document.createElement("div");
+var text = document.createElement('div');
+
 if(document.getElementById('thundertick-overlay') == null){
-	var d = document.createElement("div");
 	d.id = "thundertick-overlay"
 	d.style.top = "0px"
 	d.style.left = "0px;"
@@ -14,12 +16,18 @@ if(document.getElementById('thundertick-overlay') == null){
 	d.style.justifyContent = "center";
 	d.style.opacity = "0.8";
 
-	var text = document.createElement('div');
-	text.innerText = "ThunderTick"
 	text.style.fontSize = "40px";
 	text.style.color = "white";
 	text.style.fontFamily ="Arial, Helvetica, sans-serif";
 
 	d.appendChild(text);
 	document.body.appendChild(d);
+
+	var port = chrome.runtime.connect({name: "overlay"});
+
+	port.onMessage.addListener(function(msg) {
+		if(msg.type = "change-display-message"){
+			text.innerHTML = msg.body.data;
+		}
+	});
 }

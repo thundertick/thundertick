@@ -1,10 +1,11 @@
 var Fuse = require('fuse.js');
 
 module.exports = {
-	regex:/^t([0-9A-Za-z\s]+)/g,
+	regex:/^t(.+|$)/g,
 	answerRegex:/tab:(\d+)/,
 	tabs: [],
 	fuse: null,
+	message:"Searching all open tabs",
 	onload: function(){
 		this.updateTabsCache();
 		chrome.tabs.onUpdated.addListener(function(){
@@ -27,6 +28,9 @@ module.exports = {
 		return new Promise(function(resolve, reject){
 			var searchResults = [];
 			var tabs = this.fuse.search(this.query);
+			if(!this.query){
+				tabs = this.tabs;
+			}
 			for(i in tabs){
 				searchResults.push({
 					name:"Opened tab",
