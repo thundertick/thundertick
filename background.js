@@ -64,21 +64,6 @@ var triggerSearch = function(text, suggest){
 	}.bind(suggest));
 };
 
-
-
-/**
-	Handle API
-*/
-chrome.runtime.onConnectExternal.addListener(function(port) {
-	port.onMessage.addListener(function(req){
-		if(req.type == "registration"){
-			return API.registerExtension(req, port);
-		}
-	});
-});
-
-
-
 var timeout = undefined;
 chrome.omnibox.onInputChanged.addListener(function(text, suggest){
 	if(timeout){
@@ -98,3 +83,20 @@ chrome.omnibox.onInputEntered.addListener(function(selectedItem){
 			}
 		}
 });
+
+
+
+/**
+	Handle API
+*/
+chrome.runtime.onConnectExternal.addListener(function(port) {
+	port.onMessage.addListener(function(req){
+		if(req.type == "registration"){
+			return API.registerExtension(req, port);
+		}
+		if(req.type == "search"){
+			return API.search(req, port, triggerSearch);
+		}
+	});
+});
+

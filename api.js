@@ -9,6 +9,18 @@
 */
 
 module.exports = {
+	search: function(req, port, search){
+		debugger;
+		search(req.body.query.slice(), function(results){
+			port.postMessage({
+				type:"search-results",
+				body:{
+					results:results
+				}
+			});
+		}.bind(this));
+
+	},
 	registerExtension: function(req, port){
 		if(!req.body.regex || !req.body.answerRegex){
 				console.err("Registration for " + port.sender.id + " failed");
