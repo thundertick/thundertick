@@ -19,7 +19,6 @@ module.exports = {
 						url:bookmark.url
 					}
 				});
-				console.log(bookmarks);
 				resolve(bookmarks);
 			});
 		}.bind(this));
