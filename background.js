@@ -33,10 +33,13 @@ var triggerSearch = function(text, suggest){
 		}
 		if(!Array.isArray(searchEngine.regex)){
 			if(text.match(searchEngine.regex) != null){
-				if(searchEngine.message)
+				if(searchEngine.message){
 					overlayManager.changeMessage(searchEngine.message);
-				else
+					chrome.omnibox.setDefaultSuggestion({description:searchEngine.message});
+				} else{
 					overlayManager.changeMessage("Thundertick");
+					chrome.omnibox.setDefaultSuggestion({description:"Thundertick"});
+				}
 				searchFunctions.push(searchEngine.search(text));
 			}
 		} else {
