@@ -6,6 +6,9 @@ module.exports = function(){
 		chrome.tabs.queryAsync({active:true})
 		.then(function(tab){
 			tab = tab[0];
+			if(tab.url.indexOf("chrome://")!= -1){
+				return;
+			}
 			if(injectedTabs.indexOf(tab.id)== -1){
 				injectedTabs.push(tab.id);
 				return chrome.tabs.executeScriptAsync(tab.id,{
@@ -20,6 +23,9 @@ module.exports = function(){
 		chrome.tabs.queryAsync({active:true})
 		.then(function(tab){
 			tab = tab[0];
+			if(tab.url.indexOf("chrome://")!= -1){
+				return;
+			}
 			injectedTabs.splice(injectedTabs.indexOf(tab.id),1);
 			return chrome.tabs.executeScriptAsync(tab.id,{
 				file:'overlay/destroy.js',
