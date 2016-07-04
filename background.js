@@ -14,8 +14,7 @@ chrome.omnibox.setDefaultSuggestion({
 
 window.onload = function(){
 	console.log("preparing...");
-	utils.promisifyChromeTabs();
-	utils.promisifyChromeHistory();
+	utils.promisifyChrome(['tabs','history','bookmarks']);
 	for(var i in searchEngines){
 		if(searchEngines[i].onload){
 			searchEngines[i].onload();
