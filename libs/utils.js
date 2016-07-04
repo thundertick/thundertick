@@ -1,41 +1,24 @@
 module.exports = {
-	promisifyChromeTabs: function(){
-		console.log("Promisifying chrome.tabs");
-		var chromeKeys = Object.keys(chrome.tabs);
-		for(var func of chromeKeys){
-			if(typeof chrome.tabs[func] == "function"){
-				new function(func){
-					chrome.tabs[func+"Async"] = function(args){
-						return new Promise(function(resolve, reject){
-							var newArgs = Array.prototype.slice.call(this);
-							newArgs.push(function(args){
-								this(args);
-							}.bind(resolve));
-							chrome.tabs[func].apply(this, newArgs);
-						}.bind(arguments));
-					}
-				}(func);
-				
-			}
-		}
-	},
-	promisifyChromeHistory: function(){
-		console.log("Promisifying chrome.history");
-		var chromeKeys = Object.keys(chrome.history);
-		for(var func of chromeKeys){
-			if(typeof chrome.history[func] == "function"){
-				new function(func){
-					chrome.history[func+"Async"] = function(args){
-						return new Promise(function(resolve, reject){
-							var newArgs = Array.prototype.slice.call(this);
-							newArgs.push(function(args){
-								this(args);
-							}.bind(resolve));
-							chrome.history[func].apply(this, newArgs);
-						}.bind(arguments));
-					}
-				}(func);
-				
+	promisifyChrome: function(apis){
+		for(var i in apis){
+			var api = apis[i];
+			console.log("Promisifying chrome." + api);
+			var chromeKeys = Object.keys(chrome[api]);
+			for(var func of chromeKeys){
+				if(typeof chrome[api][func] == "function"){
+					new function(func, api){
+						chrome[api][func+"Async"] = function(args){
+							return new Promise(function(resolve, reject){
+								var newArgs = Array.prototype.slice.call(this);
+								newArgs.push(function(args){
+									this(args);
+								}.bind(resolve));
+								chrome[api][func].apply(this, newArgs);
+							}.bind(arguments));
+						}
+					}(func, api);
+
+				}
 			}
 		}
 	},
