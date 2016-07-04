@@ -5,7 +5,7 @@ module.exports = {
 	answerRegex:/history:(.+)/,
 	tabs: [],
 	fuse: null,
-	message:"Searching your browser history",
+	message:"Browser history",
 	onload: function(){
 
 	},

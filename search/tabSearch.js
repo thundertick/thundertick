@@ -5,7 +5,7 @@ module.exports = {
 	answerRegex:/tab:(\d+)/,
 	tabs: [],
 	fuse: null,
-	message:"Searching all open tabs",
+	message:"Open tabs",
 	onload: function(){
 		this.updateTabsCache();
 		chrome.tabs.onUpdated.addListener(function(){

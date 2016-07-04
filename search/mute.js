@@ -1,7 +1,7 @@
 module.exports = {
 	regex:/^mute|^unmute/g,
 	answerRegex:/^mute:(.+)/,
-	message:"Muting/unmuting tabs",
+	message:"Muting/unmuting",
 	onload: function(){
 
 	},
