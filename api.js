@@ -8,16 +8,7 @@
 	}
 */
 
-
-chrome.runtime.onConnectExternal.addListener(function(port) {
-	port.onMessage.addListener(function(req){
-		if(req.type == "registration"){
-			return API.registerExtension(req, port);
-		}
-	});
-});
-
-var API = {
+module.exports = {
 	registerExtension: function(req, port){
 		if(!req.body.regex || !req.body.answerRegex){
 				console.err("Registration for " + port.sender.id + " failed");

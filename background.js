@@ -6,6 +6,7 @@ searchEngines = [
 ];
 var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
+var API = require('./api.js');
 
 chrome.omnibox.setDefaultSuggestion({
 	description:"Omnibox+"
@@ -62,6 +63,20 @@ var triggerSearch = function(text, suggest){
 		suggest(allResults);
 	}.bind(suggest));
 };
+
+
+
+/**
+	Handle API
+*/
+chrome.runtime.onConnectExternal.addListener(function(port) {
+	port.onMessage.addListener(function(req){
+		if(req.type == "registration"){
+			return API.registerExtension(req, port);
+		}
+	});
+});
+
 
 
 var timeout = undefined;

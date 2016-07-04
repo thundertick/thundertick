@@ -1,5 +1,5 @@
 module.exports = {
-    entry: ["./background.js", "./api.js"],
+    entry: ["./background.js"],
     output: {
         path: __dirname,
         filename: "bundle.js"
