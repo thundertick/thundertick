@@ -63,6 +63,15 @@ var triggerSearch = function(text, suggest){
 	}.bind(suggest));
 };
 
+var handleSelection = function(query){
+	for(var i in searchEngines){
+		var searchEngine = searchEngines[i];
+		if(query.match(searchEngine.answerRegex) != null){
+			searchEngine.suggestion(query);
+		}
+	}
+}
+
 var timeout = undefined;
 chrome.omnibox.onInputChanged.addListener(function(text, suggest){
 	if(timeout){
@@ -75,12 +84,7 @@ chrome.omnibox.onInputChanged.addListener(function(text, suggest){
 
 
 chrome.omnibox.onInputEntered.addListener(function(selectedItem){
-		for(var i in searchEngines){
-			var searchEngine = searchEngines[i];
-			if(selectedItem.match(searchEngine.answerRegex) != null){
-				return searchEngine.suggestion(selectedItem);
-			}
-		}
+	handleSelection(selectedItem);
 });
 
 
@@ -94,7 +98,10 @@ chrome.runtime.onConnectExternal.addListener(function(port) {
 			return API.registerExtension(req, port);
 		}
 		if(req.type == "search"){
-			return API.search(req, port, triggerSearch);
+			return API.handleSearch(req, port, triggerSearch);
+		}
+		if(req.type == "select-result"){
+			return API.handleSelection(req, handleSelection);
 		}
 	});
 });

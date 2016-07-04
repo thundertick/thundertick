@@ -9,8 +9,7 @@
 */
 
 module.exports = {
-	search: function(req, port, search){
-		debugger;
+	handleSearch: function(req, port, search){
 		search(req.body.query.slice(), function(results){
 			port.postMessage({
 				type:"search-results",
@@ -19,7 +18,9 @@ module.exports = {
 				}
 			});
 		}.bind(this));
-
+	},
+	handleSelection: function(req, select){
+		select(req.body.query.slice());
 	},
 	registerExtension: function(req, port){
 		if(!req.body.regex || !req.body.answerRegex){
