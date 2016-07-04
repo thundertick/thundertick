@@ -2,7 +2,8 @@ searchEngines = [
 	require('./search/tabSearch.js'), 
 	require('./search/openTabSearch.js'),
 	require('./search/historySearch.js'),
-	require('./search/mute.js')
+	require('./search/mute.js'),
+	require('./search/bookmarkSearch.js'),
 ];
 var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
