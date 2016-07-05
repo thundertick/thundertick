@@ -1,32 +1,27 @@
 module.exports = function(){
 	this.overlayPort = undefined;
 	var self = this;
-	var injectedTabs = [];
-	chrome.omnibox.onInputChanged.addListener(function(text, suggest){
-		chrome.tabs.queryAsync({active:true})
+	chrome.omnibox.onInputStarted.addListener(function(text, suggest){
+		chrome.tabs.queryAsync({active:true, currentWindow:true})
 		.then(function(tab){
 			tab = tab[0];
 			if(tab.url.indexOf("chrome://")!= -1){
 				return;
 			}
-			if(injectedTabs.indexOf(tab.id)== -1){
-				injectedTabs.push(tab.id);
-				return chrome.tabs.executeScriptAsync(tab.id,{
-					file:'overlay/construct.js',
-					runAt:'document_end'
-				});
-			}
+			return chrome.tabs.executeScriptAsync(tab.id,{
+				file:'overlay/construct.js',
+				runAt:'document_end'
+			});
 		});
 	});
 
 	chrome.omnibox.onInputCancelled.addListener(function(){
-		chrome.tabs.queryAsync({active:true})
+		chrome.tabs.queryAsync({active:true, currentWindow:true})
 		.then(function(tab){
 			tab = tab[0];
 			if(tab.url.indexOf("chrome://")!= -1){
 				return;
 			}
-			injectedTabs.splice(injectedTabs.indexOf(tab.id),1);
 			return chrome.tabs.executeScriptAsync(tab.id,{
 				file:'overlay/destroy.js',
 				runAt:'document_end'
