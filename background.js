@@ -4,6 +4,7 @@ searchEngines = [
 	require('./search/historySearch.js'),
 	require('./search/mute.js'),
 	require('./search/bookmarkSearch.js'),
+	require('./search/downloadsSearch.js'),
 ];
 var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
@@ -17,7 +18,7 @@ chrome.omnibox.setDefaultSuggestion({
 
 window.onload = function(){
 	console.debug("preparing...");
-	utils.promisifyChrome(['tabs','history','bookmarks']);
+	utils.promisifyChrome(['tabs','history','bookmarks','downloads']);
 	for(var i in searchEngines){
 		if(searchEngines[i].onload){
 			searchEngines[i].onload();

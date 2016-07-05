@@ -6,5 +6,5 @@
   "background": {
     "page": "background.html"
   },
-  "permissions":["tabs","history", "<all_urls>", "bookmarks"]
+  "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads"]
 }
