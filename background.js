@@ -9,12 +9,14 @@ var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
 var API = require('./api.js');
 
+
+
 chrome.omnibox.setDefaultSuggestion({
 	description:"Omnibox+"
 });
 
 window.onload = function(){
-	console.log("preparing...");
+	console.debug("preparing...");
 	utils.promisifyChrome(['tabs','history','bookmarks']);
 	for(var i in searchEngines){
 		if(searchEngines[i].onload){
