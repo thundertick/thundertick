@@ -29,6 +29,7 @@ window.onload = function(){
 
 var triggerSearch = function(text, suggest){
 	var searchFunctions = [];
+	text = text.trim();
 	for(var i in searchEngines){
 		var searchEngine = searchEngines[i];
 		if(searchEngine.enabled == false){
