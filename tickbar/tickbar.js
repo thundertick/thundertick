@@ -1,6 +1,6 @@
 require('./tickbar.scss');
-thundertick = require('./thundertick.api.js');
-thundertick= new thundertick();
+tt = require('./thundertick.api.js');
+thundertick= new tt();
 
 var tickbarHtml = `
 	<input type = "text" id = "tickbar-text"></input>
@@ -24,12 +24,12 @@ var textOnChange = function(e){
 		for(var i in results){
 			var result = results[i];
 			var resultElement = document.createElement('div');
-			resultElement.className = "tickbar-result";
+			resultElement.className = i==0?"tickbar-result tickbar-selected":"tickbar-result";
 			resultElement.setAttribute("content", result.content);
 			var resultHtml = `
-				<div class="search-name">${result.name}</div>
-				<div class="title">${result.title}</div>
-				<div class="url">${result.url}</div>
+				<div class="search-name">${result.name?result.name:""}</div>
+				<div class="title">${result.title?result.title:""}</div>
+				<div class="url">${result.url?result.url:""}</div>
 			`;
 			resultElement.innerHTML = resultHtml;
 			resultElement.addEventListener('click', function(){
