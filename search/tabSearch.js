@@ -45,7 +45,6 @@ module.exports = {
 	suggestion: function(suggestion){
 		var tabId = this.answerRegex.exec(suggestion)[1];
 		this.answerRegex.lastIndex = 0;
-		console.log(this.tabs);
 		chrome.tabs.update(parseInt(tabId),{
 			active:true
 		});
