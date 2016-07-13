@@ -5,6 +5,7 @@ searchEngines = [
 	require('./search/mute.js'),
 	require('./search/bookmarkSearch.js'),
 	require('./search/downloadsSearch.js'),
+	require('./search/refreshAll.js'),
 ];
 var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
