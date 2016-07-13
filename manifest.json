@@ -6,5 +6,10 @@
   "background": {
     "page": "background.html"
   },
+  "content_scripts":[{
+  	"matches":["*://*/*"],
+  	"js":["./dist/tickbar.js"],
+  	"run_at":"document_end"
+  }],
   "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads"]
 }

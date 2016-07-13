@@ -1,0 +1,96 @@
+.tickbar-container{
+  	all: unset;
+	//Dark mode
+	//-webkit-filter: invert(100%) !important;
+	position:fixed;
+	font-family:Arial, Helvetica, sans-serif;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
+	z-index:100000;
+	background:rgba(255,255,255,0.85);
+	#tickbar-text{
+	  	all: unset;
+		border:none;
+		outline:none;
+		height:50px;
+		padding:10px;
+		letter-spacing: 1.5px;
+		width:40%;
+		font-size:30px;
+		background:#3C3C3C;
+		border-radius:5px 5px 0 0;
+		color:white;
+		margin:0px;
+	}
+
+	#tickbar-result-container{
+	  	all: unset;
+		width:40%;
+		max-height:300px;
+		overflow-y:scroll;
+		padding:10px;
+		border-radius:0 0 5px 5px;
+		background:#3C3C3C;
+		.tickbar-result{
+			color:white;
+			position:relative;
+			margin-top:15px;
+			padding: 5px;
+			border-radius: 5px;
+			&.tickbar-selected{
+				background: #4295eb;
+			}
+			.search-name{
+				position:absolute;
+				top:5px;
+				right:5px;
+				font-size:12px;
+				color:#cecece;
+			}
+			.title{
+				width:80%;
+				white-space: nowrap;
+  				overflow: hidden;
+  				text-overflow: ellipsis;
+			   	min-height: 20px;
+			}
+			.url{
+				font-size:10px;
+				color:#cecece;
+				width:80%;
+				white-space: nowrap;
+  				overflow: hidden;
+  				text-overflow: ellipsis;
+			}
+		}
+	}
+}
+@keyframes reset {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.fade-in {
+	animation-name: reset, fade-in;
+	animation-duration: 100ms;
+	animation-timing-function: ease-in;
+	animation-iteration-count: 1;
+}

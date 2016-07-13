@@ -6,7 +6,13 @@
   "dependencies": {
     "fuse.js": "^2.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
+  },
   "author": "",
   "license": "ISC"
 }

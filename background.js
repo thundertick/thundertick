@@ -27,7 +27,9 @@ window.onload = function(){
 }
 
 
-var triggerSearch = function(text, suggest){
+var triggerSearch = function(text, suggest, triggerOverlay, isTickbar){
+	if(triggerOverlay == undefined){triggerOverlay = true;}
+	if(isTickbar == undefined){isTickbar = false;}
 	var searchFunctions = [];
 	text = text.trim();
 	for(var i in searchEngines){
@@ -37,12 +39,14 @@ var triggerSearch = function(text, suggest){
 		}
 		if(!Array.isArray(searchEngine.regex)){
 			if(text.match(searchEngine.regex) != null){
-				if(searchEngine.message){
-					overlayManager.changeMessage(searchEngine.message);
-					chrome.omnibox.setDefaultSuggestion({description:searchEngine.message});
-				} else{
-					overlayManager.changeMessage("Thundertick");
-					chrome.omnibox.setDefaultSuggestion({description:"Thundertick"});
+				if(triggerOverlay){
+					if(searchEngine.message){
+						overlayManager.changeMessage(searchEngine.message);
+						chrome.omnibox.setDefaultSuggestion({description:searchEngine.message});
+					} else{
+						overlayManager.changeMessage("Thundertick");
+						chrome.omnibox.setDefaultSuggestion({description:"Thundertick"});
+					}
 				}
 				searchFunctions.push(searchEngine.search(text));
 			}
@@ -59,12 +63,16 @@ var triggerSearch = function(text, suggest){
 		var allResults = [];
 		for(var i in results){
 			for(var j in results[i]){
-				allResults.push({
-					content:results[i][j].content,
-					description:(results[i][j].name?" <dim>"+utils.escapeXml(results[i][j].name)+"</dim> - ":"" )
-					+utils.escapeXml(results[i][j].title) +" "
-					+(results[i][j].url?" <url>&lt;"+utils.escapeXml(results[i][j].url)+"&gt;</url>":"")
-				});
+				if(!isTickbar){
+					allResults.push({
+						content:results[i][j].content,
+						description:(results[i][j].name?" <dim>"+utils.escapeXml(results[i][j].name)+"</dim> - ":"" )
+						+utils.escapeXml(results[i][j].title) +" "
+						+(results[i][j].url?" <url>&lt;"+utils.escapeXml(results[i][j].url)+"&gt;</url>":"")
+					});
+				} else {
+					allResults.push(results[i][j]);
+				}
 			}
 		}
 		suggest(allResults);
@@ -97,11 +105,26 @@ chrome.omnibox.onInputEntered.addListener(function(selectedItem){
 
 
 
+
+chrome.runtime.onConnect.addListener(function(port){
+	port.onMessage.addListener(function(req){
+		if(req.type == "registration"){
+			return API.registerExtension(req, port);
+		}
+		if(req.type == "search"){
+			return API.handleSearch(req, port, triggerSearch);
+		}
+		if(req.type == "select-result"){
+			return API.handleSelection(req, handleSelection);
+		}
+	});
+});
 /**
 	Handle API
 */
 chrome.runtime.onConnectExternal.addListener(function(port) {
 	port.onMessage.addListener(function(req){
+		console.log(req);
 		if(req.type == "registration"){
 			return API.registerExtension(req, port);
 		}
