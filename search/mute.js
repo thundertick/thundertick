@@ -1,5 +1,5 @@
 module.exports = {
-	regex:/^mute|^unmute/g,
+	regex:/^m(?:[ute]*)|^u(?:[nmute]*)/g,
 	answerRegex:/^mute:(.+)/,
 	message:"Muting/unmuting",
 	onload: function(){
