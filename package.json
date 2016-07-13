@@ -4,7 +4,9 @@
   "description": "",
   "main": "background.js",
   "dependencies": {
-    "fuse.js": "^2.2.0"
+    "fuse.js": "^2.2.0",
+    "lodash.groupby": "^4.4.0",
+    "mathjs": "^3.3.0"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",

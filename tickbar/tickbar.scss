@@ -15,7 +15,6 @@
 	z-index:100000;
 	background:rgba(255,255,255,0.85);
 	#tickbar-text{
-	  	all: unset;
 		border:none;
 		outline:none;
 		height:50px;
@@ -30,18 +29,17 @@
 	}
 
 	#tickbar-result-container{
-	  	all: unset;
 		width:40%;
 		max-height:300px;
 		overflow-y:scroll;
-		padding:10px;
+	    padding: 2px 10px;
 		border-radius:0 0 5px 5px;
 		background:#3C3C3C;
 		.tickbar-result{
 			color:white;
 			position:relative;
-			margin-top:15px;
-			padding: 5px;
+			margin:15px 0 5px 0;
+			padding: 10px;
 			border-radius: 5px;
 			&.tickbar-selected{
 				background: #4295eb;

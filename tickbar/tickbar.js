@@ -3,8 +3,8 @@ tt = require('./thundertick.api.js');
 thundertick= new tt();
 
 var tickbarHtml = `
-	<input type = "text" id = "tickbar-text"></input>
-	<div id="tickbar-result-container"></div>
+<input type = "text" id = "tickbar-text"></input>
+<div id="tickbar-result-container"></div>
 `;
 
 cancelTickbar = function(){
@@ -12,33 +12,39 @@ cancelTickbar = function(){
 	tickbarContainer.parentNode.removeChild(tickbarContainer);
 }
 
+var timeout = undefined;
 
 var textOnChange = function(e){
 	if(e.key == "ArrowDown" || e.key == "ArrowUp" || e.key == "Enter"){
 		return;
 	}
-	var query = e.target.value;
-	thundertick.search(query, function(results){
-		var resultContainer = document.getElementById('tickbar-result-container');
-		resultContainer.innerHTML = "";
-		for(var i in results){
-			var result = results[i];
-			var resultElement = document.createElement('div');
-			resultElement.className = i==0?"tickbar-result tickbar-selected":"tickbar-result";
-			resultElement.setAttribute("content", result.content);
-			var resultHtml = `
+	if(timeout){
+		clearTimeout(timeout);
+	}
+	timeout = setTimeout(function(){
+		var query = e.target.value;
+		thundertick.search(query, function(results){
+			var resultContainer = document.getElementById('tickbar-result-container');
+			resultContainer.innerHTML = "";
+			for(var i in results){
+				var result = results[i];
+				var resultElement = document.createElement('div');
+				resultElement.className = i==0?"tickbar-result tickbar-selected":"tickbar-result";
+				resultElement.setAttribute("content", result.content);
+				var resultHtml = `
 				<div class="search-name">${result.name?result.name:""}</div>
 				<div class="title">${result.title?result.title:""}</div>
 				<div class="url">${result.url?result.url:""}</div>
-			`;
-			resultElement.innerHTML = resultHtml;
-			resultElement.addEventListener('click', function(){
-				thundertick.select(this.getAttribute('content'));
-				cancelTickbar();
-			});
-			resultContainer.appendChild(resultElement);
-		}
-	});
+				`;
+				resultElement.innerHTML = resultHtml;
+				resultElement.addEventListener('click', function(){
+					thundertick.select(this.getAttribute('content'));
+					cancelTickbar();
+				});
+				resultContainer.appendChild(resultElement);
+			}
+		});
+	}.bind(this), 200);
 }
 
 
@@ -77,74 +83,74 @@ window.addEventListener('keydown', function(e){
 
 /**
 	Handles arrow up and down
-*/
+	*/
 
-window.addEventListener('keydown', function(e){
-	if(e.key != "ArrowDown"){
-		return;
-	}
-	if(document.getElementById('tickbar-text') == undefined){
-		return;
-	}
-	e.preventDefault();
-	var resultElements = document.getElementsByClassName('tickbar-result');
-	if(document.getElementsByClassName('tickbar-selected').length == 0 && resultElements.length != 0){
-		resultElements[0].className ="tickbar-result tickbar-selected";
-		return;
-	}
-	for(var i = 0; i <= resultElements.length-1;i++){
-		var result = resultElements[i];
-		if(result.className.indexOf('tickbar-selected') != -1){
-			result.className = 'tickbar-result';
-			if(i+1 > resultElements.length-1){
-				resultElements[0].className ="tickbar-result tickbar-selected";
-				resultElements[0].scrollIntoView(false);
-			} else {
-				resultElements[i+1].className = "tickbar-result tickbar-selected"
-				resultElements[i+1].scrollIntoView(false);
-			}
-			break;
+	window.addEventListener('keydown', function(e){
+		if(e.key != "ArrowDown"){
+			return;
 		}
-	}
-});
+		if(document.getElementById('tickbar-text') == undefined){
+			return;
+		}
+		e.preventDefault();
+		var resultElements = document.getElementsByClassName('tickbar-result');
+		if(document.getElementsByClassName('tickbar-selected').length == 0 && resultElements.length != 0){
+			resultElements[0].className ="tickbar-result tickbar-selected";
+			return;
+		}
+		for(var i = 0; i <= resultElements.length-1;i++){
+			var result = resultElements[i];
+			if(result.className.indexOf('tickbar-selected') != -1){
+				result.className = 'tickbar-result';
+				if(i+1 > resultElements.length-1){
+					resultElements[0].className ="tickbar-result tickbar-selected";
+					resultElements[0].scrollIntoView(false);
+				} else {
+					resultElements[i+1].className = "tickbar-result tickbar-selected"
+					resultElements[i+1].scrollIntoView(false);
+				}
+				break;
+			}
+		}
+	});
 
-window.addEventListener('keydown', function(e){
-	if(e.key != "ArrowUp"){
-		return;
-	}
-	if(document.getElementById('tickbar-text') == undefined){
-		return;
-	}
-	e.preventDefault();
-	var resultElements = document.getElementsByClassName('tickbar-result');
-	if(document.getElementsByClassName('tickbar-selected').length == 0 && resultElements.length != 0){
-		resultElements[0].className ="tickbar-result tickbar-selected";
-		return;
-	}
-	for(var i = 0; i <= resultElements.length-1;i++){
-		var result = resultElements[i];
-		if(result.className.indexOf('tickbar-selected') != -1){
-			result.className = 'tickbar-result';
-			if(i-1 < 0){
-				resultElements[resultElements.length-1].className ="tickbar-result tickbar-selected";
-				resultElements[resultElements.length-1].scrollIntoView(false);
-			} else {
-				resultElements[i-1].className = "tickbar-result tickbar-selected"
-				resultElements[i-1].scrollIntoView(false);
-			}
-			break;
+	window.addEventListener('keydown', function(e){
+		if(e.key != "ArrowUp"){
+			return;
 		}
-	}
-});
+		if(document.getElementById('tickbar-text') == undefined){
+			return;
+		}
+		e.preventDefault();
+		var resultElements = document.getElementsByClassName('tickbar-result');
+		if(document.getElementsByClassName('tickbar-selected').length == 0 && resultElements.length != 0){
+			resultElements[0].className ="tickbar-result tickbar-selected";
+			return;
+		}
+		for(var i = 0; i <= resultElements.length-1;i++){
+			var result = resultElements[i];
+			if(result.className.indexOf('tickbar-selected') != -1){
+				result.className = 'tickbar-result';
+				if(i-1 < 0){
+					resultElements[resultElements.length-1].className ="tickbar-result tickbar-selected";
+					resultElements[resultElements.length-1].scrollIntoView(false);
+				} else {
+					resultElements[i-1].className = "tickbar-result tickbar-selected"
+					resultElements[i-1].scrollIntoView(false);
+				}
+				break;
+			}
+		}
+	});
 
 
 
 /**
 	Handles selection of result
-*/
-window.addEventListener('keydown', function(e){
-	if(e.key != "Enter"){
-		return;
-	}
-	document.getElementsByClassName('tickbar-selected')[0].click();
-});
+	*/
+	window.addEventListener('keydown', function(e){
+		if(e.key != "Enter"){
+			return;
+		}
+		document.getElementsByClassName('tickbar-selected')[0].click();
+	});
