@@ -41,7 +41,18 @@ var triggerSearch = function(text, suggest, triggerOverlay, isTickbar){
 		if(searchEngine.enabled == false){
 			continue;
 		}
-		if(!Array.isArray(searchEngine.regex)){
+		if(Array.isArray(searchEngine.regex)){
+			for(i in searchEngine.regex){
+				if(text.match(searchEngine.regex[i]) != null){
+					searchFunctions.push(searchEngine.search(text));
+					break;
+				}
+			}
+		} else if(typeof searchEngine.regex == "function"){
+			if(searchEngine.regex(text)){
+				searchFunctions.push(searchEngine.search(text));
+			}
+		} else {
 			if(text.match(searchEngine.regex) != null){
 				if(triggerOverlay){
 					if(searchEngine.message){
@@ -53,13 +64,6 @@ var triggerSearch = function(text, suggest, triggerOverlay, isTickbar){
 					}
 				}
 				searchFunctions.push(searchEngine.search(text));
-			}
-		} else {
-			for(i in searchEngine.regex){
-				if(text.match(searchEngine.regex[i]) != null){
-					searchFunctions.push(searchEngine.search(text));
-					break;
-				}
 			}
 		}
 	}
