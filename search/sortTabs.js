@@ -1,7 +1,11 @@
 var groupby = require('lodash.groupby');
-
+var fuzzy = require('fuzzyjs');
 module.exports = {
-	regex:/^s(?:[ort\stabs]*)/,
+	regex:function(query){
+		if(query.trim() == "")
+			return false;
+		return fuzzy.test(query, 'sort tabs');
+	},
 	answerRegex:/sort-tabs/,
 	message:"Sort Tabs",
 	onload: function(){
