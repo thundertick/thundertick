@@ -8,6 +8,7 @@ searchEngines = [
 	require('./search/refreshAll.js'),
 	require('./search/sortTabs.js'),
 	require('./search/math.js'),
+	require('./search/webSearch.js'),
 ];
 var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
