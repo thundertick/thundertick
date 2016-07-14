@@ -1,70 +1,81 @@
 .tickbar-container{
-  	all: unset;
+	all: unset;
 	//Dark mode
 	//-webkit-filter: invert(100%) !important;
 	position:fixed;
-	font-family:Arial, Helvetica, sans-serif;
+	font-family:'OpenSans-Light';
 	top:0px;
 	left:0px;
 	height:100%;
 	width:100%;
-	display:flex;
-	align-items:center;
-	justify-content:center;
 	flex-direction:column;
 	z-index:100000;
 	background:rgba(255,255,255,0.85);
-	#tickbar-text{
-		border:none;
-		outline:none;
-		height:50px;
-		padding:10px;
-		letter-spacing: 1.5px;
+	>.tickbar{
+		position:absolute;
+		top: 20%;
+		left: 50%;
+		transform: translate(-50%,-20%);
 		width:40%;
-		font-size:30px;
-		background:#3C3C3C;
-		border-radius:5px 5px 0 0;
-		color:white;
-		margin:0px;
-	}
-
-	#tickbar-result-container{
-		width:40%;
-		max-height:300px;
-		overflow-y:scroll;
-	    padding: 2px 10px;
-		border-radius:0 0 5px 5px;
-		background:#3C3C3C;
-		.tickbar-result{
+		min-height:350px;
+		>#tickbar-text{
+			border:none;
+			outline:none;
+			height:50px;
+			padding:10px;
+			letter-spacing: 1.5px;
+			width:100%;
+			font-size:30px;
+			background:#3C3C3C;
+			border-radius:5px 5px 0 0;
 			color:white;
-			position:relative;
-			margin:15px 0 5px 0;
-			padding: 10px;
-			border-radius: 5px;
-			&.tickbar-selected{
-				background: #4295eb;
-			}
-			.search-name{
-				position:absolute;
-				top:5px;
-				right:5px;
-				font-size:12px;
-				color:#cecece;
-			}
-			.title{
-				width:80%;
-				white-space: nowrap;
-  				overflow: hidden;
-  				text-overflow: ellipsis;
-			   	min-height: 20px;
-			}
-			.url{
-				font-size:10px;
-				color:#cecece;
-				width:80%;
-				white-space: nowrap;
-  				overflow: hidden;
-  				text-overflow: ellipsis;
+			margin:0px;
+		}
+
+		>#tickbar-result-container{
+			width:100%;
+			max-height:300px;
+			overflow-y:scroll;
+			padding: 2px 10px;
+			border-radius:0 0 5px 5px;
+			background:#3C3C3C;
+			>.tickbar-result{
+				color:white;
+				position:relative;
+				margin:15px 0 5px 0;
+				padding: 10px;
+				border-radius: 5px;
+				&.tickbar-selected{
+					background: #4295eb;
+				}
+				>.search-name{
+					all:unset;
+					position:absolute;
+					display:block;
+					top:5px;
+					right:5px;
+					font-size:12px;
+					color:#cecece;
+				}
+				>.title{
+					all:unset;
+					width:80%;
+					display:block;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					min-height: 20px;
+				}
+				>.url{
+					all:unset;
+					font-size:10px;
+					display:block;
+					color:#cecece;
+					width:80%;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
 			}
 		}
 	}

@@ -10,7 +10,11 @@
   "content_scripts":[{
   	"matches":["*://*/*"],
   	"js":["./dist/tickbar.js"],
+    "css":["./tickbar/font/OpenSans-Light.css"],
   	"run_at":"document_end"
   }],
+  "web_accessible_resources":[
+    "tickbar/font/*"
+  ],
   "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads","clipboardWrite"]
 }

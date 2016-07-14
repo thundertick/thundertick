@@ -3,8 +3,10 @@ tt = require('./thundertick.api.js');
 thundertick= new tt();
 
 var tickbarHtml = `
-<input type = "text" id = "tickbar-text"></input>
-<div id="tickbar-result-container"></div>
+<div class = "tickbar">
+	<input type = "text" id = "tickbar-text"></input>
+	<div id="tickbar-result-container"></div>
+</div>
 `;
 
 cancelTickbar = function(){
