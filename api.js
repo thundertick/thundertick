@@ -9,6 +9,7 @@
 */
 
 module.exports = {
+	
 	handleSearch: function(req, port, search){
 		search(req.body.query.slice(), function(results){
 			port.postMessage({
