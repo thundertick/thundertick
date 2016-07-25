@@ -1,6 +1,22 @@
 module.exports = function(){
 	const THUNDERTICK = "flgjiafbioledndgpeamhfoipgldgmca";
-	var port = chrome.runtime.connect(THUNDERTICK);
+	var port = {};
+
+	function connect(){
+		
+		port = chrome.runtime.connect(THUNDERTICK);
+		port.onDisconnect.addListener(function(){
+			port.disconnect();
+			console.log("DISCONNECTED!!");
+			
+			setTimeout(function(){
+				console.log("RECONNECTING...");
+				connect();	
+			}, 5000);
+		});
+	}
+	
+	connect();
 	
 	this.search = function(query, cb){
 		onMessage = function(message){
