@@ -14,7 +14,8 @@
   	"run_at":"document_end"
   }],
   "web_accessible_resources":[
-    "tickbar/font/*"
+    "tickbar/font/*",
+    "images/*.png"
   ],
   "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads","clipboardWrite"]
 }

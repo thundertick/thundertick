@@ -4,6 +4,7 @@ thundertick= new tt();
 
 var tickbarHtml = `
 <div class = "tickbar">
+	<img id = "icon" src = "${chrome.extension.getURL("/images/icon.png")}"></img>
 	<input type = "text" id = "tickbar-text"></input>
 	<div id="tickbar-result-container"></div>
 </div>
