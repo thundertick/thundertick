@@ -17,7 +17,7 @@
 		position:absolute;
 		top: 20%;
 		left: 50%;
-		transform: translate(-50%,-20%);
+		transform: translate(-50%,0);
 		width:40%;
 	    background: #3C3C3C;
     	border-radius: 5px;
@@ -26,7 +26,7 @@
 			all: unset;
 		    border: 0;
 		    /* width: 30px; */
-		    height: 30px;
+		    height: 30px!important;
 		    position: absolute;
 		    top: 20px;
 		    left: 15px;
