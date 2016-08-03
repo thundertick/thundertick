@@ -2,7 +2,7 @@ var groupby = require('lodash.groupby');
 var fuzzy = require('fuzzyjs');
 module.exports = {
 	regex:function(query){
-		if(query.trim() == "" && query.length < 2)
+		if(query.trim() == "" && query.trim().length < 2)
 			return false;
 		return fuzzy.test(query, 'sort tabs');
 	},
