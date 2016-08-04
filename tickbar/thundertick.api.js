@@ -1,5 +1,5 @@
 module.exports = function(){
-	const THUNDERTICK = "flgjiafbioledndgpeamhfoipgldgmca";
+	const THUNDERTICK = "fjlfmlponipgmabidmcmijicbbfnbnnj";
 	var port = {};
 
 	function connect(){
