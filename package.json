@@ -12,10 +12,24 @@
   "devDependencies": {
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gulp": "^3.9.1",
+    "gulp-bump": "^2.2.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-dest-clean": "^0.5.0",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-replace-task": "^0.11.0",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "build": "gulp --gulpfile chrome.build.js",
+    "bump:major":"gulp --gulpfile chrome.build.js bump:major",
+    "bump:minor":"gulp --gulpfile chrome.build.js bump:minor",
+    "bump:patch":"gulp --gulpfile chrome.build.js bump:patch"
   },
   "author": "",
   "license": "ISC"
