@@ -16,7 +16,8 @@ module.exports = {
 			{
 				name:"Sort Tabs",
 				content:"sort-tabs",
-				title:"Sort all tabs by URL"
+				title:"Sort all tabs by URL",
+				url:"Sorts all your tabs based on their web addresses"
 			}
 		]);
 	},

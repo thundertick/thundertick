@@ -15,7 +15,8 @@ module.exports = {
 			{
 				name:"Refresh All",
 				content:"refresh-all",
-				title:"Refresh all tabs"
+				title:"Refresh all tabs",
+				url:"Refresh all currently opened tabs"
 			}
 		]);
 	},
