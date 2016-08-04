@@ -6,12 +6,15 @@
   "background": {
     "page": "background.html"
   },
+  "icons": {
+    "128": "./images/icon128.png"
+  },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
   "content_scripts":[{
   	"matches":["*://*/*"],
   	"js":["./dist/tickbar.js"],
     "css":["./tickbar/font/OpenSans-Light.css", "./dist/tickbar.css"],
-  	"run_at":"document_end"
+    "run_at":"document_end"
   }],
   "web_accessible_resources":[
     "tickbar/font/*",
