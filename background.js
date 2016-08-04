@@ -10,6 +10,7 @@ searchEngines = [
 	require('./search/math.js'),
 	require('./search/webSearch.js'),
 	require('./search/screenshot.js'),
+	require('./search/lastActiveTab.js'),
 ];
 var utils = require('./libs/utils.js');
 var overlayManager = require('./overlay/overlayManager.js')();
