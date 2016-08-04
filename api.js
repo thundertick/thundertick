@@ -17,7 +17,7 @@ module.exports = {
 					results:results
 				}
 			});
-		}.bind(this), false, true);
+		}.bind(this), true);
 	},
 	handleSelection: function(req, select){
 		select(req.body.query.slice());
