@@ -13,7 +13,6 @@ searchEngines = [
 	require('./search/lastActiveTab.js'),
 ];
 var utils = require('./libs/utils.js');
-var overlayManager = require('./overlay/overlayManager.js')();
 var API = require('./api.js');
 
 
@@ -33,8 +32,7 @@ window.onload = function(){
 }
 
 
-var triggerSearch = function(text, suggest, triggerOverlay, isTickbar){
-	if(triggerOverlay == undefined){triggerOverlay = true;}
+var triggerSearch = function(text, suggest, isTickbar){
 	if(isTickbar == undefined){isTickbar = false;}
 	var searchFunctions = [];
 	text = text.trim();
@@ -56,15 +54,6 @@ var triggerSearch = function(text, suggest, triggerOverlay, isTickbar){
 			}
 		} else {
 			if(text.match(searchEngine.regex) != null){
-				if(triggerOverlay){
-					if(searchEngine.message){
-						overlayManager.changeMessage(searchEngine.message);
-						chrome.omnibox.setDefaultSuggestion({description:searchEngine.message});
-					} else{
-						overlayManager.changeMessage("Thundertick");
-						chrome.omnibox.setDefaultSuggestion({description:"Thundertick"});
-					}
-				}
 				searchFunctions.push(searchEngine.search(text));
 			}
 		}

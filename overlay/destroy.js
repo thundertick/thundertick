@@ -1,1 +1,0 @@
-document.getElementById("thundertick-overlay").parentNode.removeChild(document.getElementById("thundertick-overlay"));
