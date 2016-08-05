@@ -22,6 +22,12 @@ chrome.omnibox.setDefaultSuggestion({
 	description:"Thundertick"
 });
 
+chrome.runtime.onInstalled.addListener(function(details){
+	if(details.reason == "install"){
+		chrome.tabs.create({url:'./pages/install/index.html', active:true});
+	}
+});
+
 window.onload = function(){
 	console.debug("preparing...");
 	utils.promisifyChrome(['tabs','history','bookmarks','downloads']);

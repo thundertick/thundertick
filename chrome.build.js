@@ -26,7 +26,7 @@ gulp.task('webpack', function (cb) {
 });
 
 gulp.task('default', ['webpack','clean-scripts'], function(cb) {
-	gulp.src(['background.html','pages/help/index.html'])
+	gulp.src(['background.html','pages/help/index.html', 'pages/install/index.html'])
 	.pipe(gulpCopy('builds/chrome', {}));
 
 	gulp.src(['manifest.json'], {base:'./'})

@@ -15,7 +15,8 @@ module.exports = {
 	entry: {
 		bundle: "./background.js",
 		tickbar: ["./tickbar/tickbar.js"],
-		help:"./pages/help/js/index.js"
+		help:"./pages/help/js/index.js",
+		install:"./pages/install/styles/install.scss"
 	},
 	output: {
 		path: __dirname,
