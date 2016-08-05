@@ -19,7 +19,7 @@ var API = require('./api.js');
 
 
 chrome.omnibox.setDefaultSuggestion({
-	description:"Omnibox+"
+	description:"Thundertick"
 });
 
 window.onload = function(){
