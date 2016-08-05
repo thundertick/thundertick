@@ -7,6 +7,11 @@ module.exports = {
 	},
 	answerRegex:/^screenshot/,
 	message:"Screenshot",
+	doc:{
+		type:'command',
+		keyword:'screenshot',
+		info:'Command to take a screenshot of the current page'
+	},
 	onload: function(){
 
 	},

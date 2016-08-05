@@ -4,6 +4,11 @@ module.exports = {
 	regex:/^\d(.+)/,
 	answerRegex:/math:(.+)/,
 	message:"Math",
+	doc:{
+		type:'search',
+		keyword:'32*19',
+		info:'Any mathematic query and we\'ll solve it'
+	},
 	onload: function(){
 
 	},

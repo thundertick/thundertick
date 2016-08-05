@@ -11,6 +11,7 @@ searchEngines = [
 	require('./search/webSearch.js'),
 	require('./search/screenshot.js'),
 	require('./search/lastActiveTab.js'),
+	require('./search/help.js'),
 ];
 var utils = require('./libs/utils.js');
 var API = require('./api.js');
@@ -26,6 +27,7 @@ window.onload = function(){
 	utils.promisifyChrome(['tabs','history','bookmarks','downloads']);
 	for(var i in searchEngines){
 		if(searchEngines[i].onload){
+			searchEngines[i].enabled = true;
 			searchEngines[i].onload();
 		}
 	}
@@ -116,6 +118,9 @@ chrome.runtime.onConnect.addListener(function(port){
 		if(req.type == "select-result"){
 			return API.handleSelection(req, handleSelection);
 		}
+		if(req.type == "get-docs"){
+			return API.getDocs(req,port);
+		}
 	});
 });
 /**
@@ -132,6 +137,9 @@ chrome.runtime.onConnectExternal.addListener(function(port) {
 		}
 		if(req.type == "select-result"){
 			return API.handleSelection(req, handleSelection);
+		}
+		if(req.type == "get-docs"){
+			return API.getDocs(req,port);
 		}
 	});
 });

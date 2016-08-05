@@ -7,6 +7,11 @@ module.exports = {
 	},
 	answerRegex:/refresh-all/,
 	message:"Refresh All",
+	doc:{
+		type:'command',
+		keyword:'refresh all',
+		info:'Command to refresh all active tabs'
+	},
 	onload: function(){
 
 	},

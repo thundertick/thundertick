@@ -2,6 +2,11 @@ module.exports = {
 	regex:/^d($|.+)/g,
 	answerRegex:/download:(\d+)/,
 	message:"Downloads",
+	doc:{
+		type:'search',
+		keyword:'d',
+		info:'Keyword followed by your query to search your downloads'
+	},
 	search: function(query){
 		this.query = this.regex.exec(query)[1];
 		this.regex.lastIndex = 0;

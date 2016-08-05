@@ -6,6 +6,11 @@ module.exports = {
 	tabs: [],
 	fuse: null,
 	message:"Open tabs",
+	doc:{
+		type:'search',
+		keyword:'t',
+		info:'Keyword followed by your query to search your currently open tabs'
+	},
 	onload: function(){
 		this.updateTabsCache();
 		chrome.tabs.onUpdated.addListener(function(){

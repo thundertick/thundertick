@@ -2,6 +2,11 @@ module.exports = {
 	regex:/^b(.+)/g,
 	answerRegex:/bookmark:(\d+)/,
 	message:"Bookmarks",
+	doc:{
+		type:'search',
+		keyword:'b',
+		info:'Keyword followed by your query to search your bookmarks'
+	},
 	search: function(query){
 		this.query = this.regex.exec(query)[1];
 		this.regex.lastIndex = 0;

@@ -2,6 +2,11 @@ module.exports = {
 	regex:/^m(?:[ute]*)|^u(?:[nmute]*)/g,
 	answerRegex:/^mute:(.+)/,
 	message:"Muting/unmuting",
+	doc:{
+		type:'command',
+		keyword:'mute',
+		info:'Command to mute a tab that is playing sound'
+	},
 	onload: function(){
 
 	},

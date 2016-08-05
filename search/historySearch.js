@@ -6,6 +6,11 @@ module.exports = {
 	tabs: [],
 	fuse: null,
 	message:"Browser history",
+	doc:{
+		type:'search',
+		keyword:'h',
+		info:'Keyword followed by your query to search your history'
+	},
 	onload: function(){
 
 	},

@@ -8,6 +8,11 @@ module.exports = {
 	},
 	answerRegex:/sort-tabs/,
 	message:"Sort Tabs",
+	doc:{
+		type:'command',
+		keyword:'sort tabs',
+		info:'Command to sort all tabs by URL'
+	},
 	onload: function(){
 
 	},

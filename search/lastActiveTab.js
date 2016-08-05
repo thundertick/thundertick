@@ -7,6 +7,11 @@ module.exports = {
 	},
 	answerRegex:/stla/,
 	message:"Switch to last tab",
+	doc:{
+		type:'command',
+		keyword:'Switch to last tab',
+		info:'Command to switch the last active tab'
+	},
 	lastTabId:0,
 	newTabId:0,
 	onload: function(){
