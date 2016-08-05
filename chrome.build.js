@@ -26,7 +26,7 @@ gulp.task('webpack', function (cb) {
 });
 
 gulp.task('default', ['webpack','clean-scripts'], function(cb) {
-	gulp.src(['background.html','pages/help/index.html', 'pages/install/index.html'])
+	gulp.src(['background.html','pages/help/index.html', 'pages/install/index.html', 'tickbar/font/OpenSans-Light_gdi.*'])
 	.pipe(gulpCopy('builds/chrome', {}));
 
 	gulp.src(['manifest.json'], {base:'./'})
@@ -44,7 +44,7 @@ gulp.task('default', ['webpack','clean-scripts'], function(cb) {
 	.pipe(imagemin())
 	.pipe(gulp.dest('builds/chrome'));
 
-	gulp.src([ 'tickbar/font/*','dist/*.css'],{base: './'})
+	gulp.src([ 'tickbar/font/*.css','dist/*.css'],{base: './'})
 	.pipe(cleanCSS())
 	.pipe(gulp.dest('builds/chrome'));
 
