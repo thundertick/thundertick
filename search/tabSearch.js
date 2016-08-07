@@ -16,6 +16,9 @@ module.exports = {
 		chrome.tabs.onUpdated.addListener(function(){
 			this.updateTabsCache();
 		}.bind(this));
+		chrome.tabs.onRemoved.addListener(function(){
+			this.updateTabsCache();
+		}.bind(this));
 	},
 	updateTabsCache: function(){
 		chrome.tabs.queryAsync({}).then(function(tabs){
