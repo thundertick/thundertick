@@ -1,6 +1,7 @@
 require('./tickbar.scss');
 tt = require('./thundertick.api.js');
 thundertick= new tt();
+var isVisible = false;
 
 var tickbarHtml = `
 <div class = "tickbar">
@@ -13,8 +14,23 @@ var tickbarHtml = `
 cancelTickbar = function(){
 	var tickbarContainer = document.getElementsByClassName('tickbar-container')[0];
 	tickbarContainer.parentNode.removeChild(tickbarContainer);
+	isVisible = false;
 }
 
+showTickbar = function(){
+	if(isVisible){
+		return cancelTickbar();
+	}
+	isVisible = true;
+	var tickbarContainer = document.createElement('div');
+	tickbarContainer.className = "tickbar-container fade-in";
+	tickbarContainer.innerHTML = tickbarHtml;
+	document.body.appendChild(tickbarContainer);
+
+	var tickbar = document.getElementById('tickbar-text')
+	tickbar.focus();
+	tickbar.addEventListener('keyup', textOnChange);
+}
 var timeout = undefined;
 
 var textOnChange = function(e){
@@ -50,7 +66,6 @@ var textOnChange = function(e){
 	}.bind(this), 200);
 }
 
-
 window.addEventListener('keydown',function(e){
 	if(e.key == "`" && document.getElementById('tickbar-text') != undefined){
 		cancelTickbar();
@@ -62,14 +77,7 @@ window.addEventListener('keydown',function(e){
 		return;
 	}
 	e.preventDefault();
-	var tickbarContainer = document.createElement('div');
-	tickbarContainer.className = "tickbar-container fade-in";
-	tickbarContainer.innerHTML = tickbarHtml;
-	document.body.appendChild(tickbarContainer);
-
-	var tickbar = document.getElementById('tickbar-text')
-	tickbar.focus();
-	tickbar.addEventListener('keyup', textOnChange);
+	showTickbar();
 });
 
 window.addEventListener('keydown', function(e){

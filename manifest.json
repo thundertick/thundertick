@@ -17,6 +17,11 @@
     "css":["./tickbar/font/OpenSans-Light.css", "./dist/tickbar.css"],
     "run_at":"document_end"
   }],
+  "browser_action": {
+    "default_icon": {
+      "128": "images/icon128.png"
+    }
+  },
   "web_accessible_resources":[
     "tickbar/font/*",
     "images/*.png"

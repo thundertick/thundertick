@@ -110,7 +110,9 @@ chrome.omnibox.onInputEntered.addListener(function(selectedItem){
 	handleSelection(selectedItem);
 });
 
-
+chrome.browserAction.onClicked.addListener(function(tab){
+	chrome.tabs.executeScriptAsync(tab.id, {code:"showTickbar();"})
+});
 
 
 chrome.runtime.onConnect.addListener(function(port){
