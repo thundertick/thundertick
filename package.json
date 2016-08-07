@@ -20,6 +20,7 @@
     "gulp-imagemin": "^3.0.2",
     "gulp-jsmin": "^0.1.5",
     "gulp-replace-task": "^0.11.0",
+    "gulp-zip": "^3.2.0",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
@@ -27,9 +28,9 @@
   },
   "scripts": {
     "build": "gulp --gulpfile chrome.build.js",
-    "bump:major":"gulp --gulpfile chrome.build.js bump:major",
-    "bump:minor":"gulp --gulpfile chrome.build.js bump:minor",
-    "bump:patch":"gulp --gulpfile chrome.build.js bump:patch"
+    "bump:major": "gulp --gulpfile chrome.build.js bump:major",
+    "bump:minor": "gulp --gulpfile chrome.build.js bump:minor",
+    "bump:patch": "gulp --gulpfile chrome.build.js bump:patch"
   },
   "author": "",
   "license": "ISC"
