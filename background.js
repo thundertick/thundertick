@@ -23,6 +23,20 @@ chrome.omnibox.setDefaultSuggestion({
 });
 
 chrome.runtime.onInstalled.addListener(function(details){
+	if(details.reason == "install" || details.reason == "update"){
+		/*Inject into all opened tabs*/
+		chrome.tabs.queryAsync({})
+		.then(function(tabs){
+			for(var i in tabs){
+				var tab = tabs[i];
+				if(tab.url.indexOf('chrome://') != -1){
+					continue;
+				}
+				chrome.tabs.executeScript(tab.id, {file:'./dist/tickbar.js'})
+				chrome.tabs.executeScript(tab.id, {file:'./dist/tickbar.css'})
+			}
+		})
+	}
 	if(details.reason == "install"){
 		chrome.tabs.create({url:'./pages/install/index.html', active:true});
 	}
