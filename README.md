@@ -9,8 +9,6 @@ You can install thundertick from the [Chrome Webstore](https://chrome.google.com
    
 You can get the latest unreleased versions by loading an unpacked extension by [building the code in the repository manually.](#Build)
 
-It is recommended you restart your browser after installation of thundertick so that it can function correctly and inject the scripts into the tabs to allow for thundertick to show up.
-
 ##Usage   
 To launch thundertick on any open tab you can either click the thundertick browser-action(the icon in your toolbar) or you can tap on the ```backtick``` key on your keyboard.   
 
