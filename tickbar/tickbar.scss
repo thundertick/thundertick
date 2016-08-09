@@ -19,12 +19,12 @@
 		left: 50%;
 		transform: translate(-50%,0);
 		width:40%;
-	    background: #3C3C3C;
-    	border-radius: 5px;
+		background: #3C3C3C;
+		border-radius: 5px;
 		box-shadow: 3px 5px 30px 0px rgba(0,0,0,0.6);
 		>#icon{
 			all: unset;
-		    border: 0;
+			border: 0;
 		    /* width: 30px; */
 		    height: 30px!important;
 		    position: absolute;
@@ -43,7 +43,7 @@
 			background:#3C3C3C;
 			border-radius:5px 5px 0 0;
 			-webkit-box-sizing: content-box;
-    		box-sizing: content-box;
+			box-sizing: content-box;
 			color:white;
 			margin:0px;
 		}
@@ -55,10 +55,29 @@
 			padding: 2px 0px;
 			border-radius:0 0 5px 5px;
 			background:#3C3C3C;
-    		box-sizing: content-box;
+			box-sizing: content-box;
 			::-webkit-scrollbar {
+				width: 10px;
+			}
+
+			::-webkit-scrollbar-thumb {
+				-webkit-border-radius: 10px;
+				border-radius: 10px;
 				background: #3c3c3c;
-				border-radius: 5px;
+				-webkit-transition: background 3s linear;
+			}
+
+			:hover::-webkit-scrollbar-thumb {
+				opacity: 1;
+				background: #5c5c5c;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #6A6A6A;
+			}
+
+			::-webkit-scrollbar-thumb:active {
+				background: #848484;
 			}
 			>.tickbar-result{
 				color:white;
