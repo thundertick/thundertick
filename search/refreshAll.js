@@ -7,6 +7,7 @@ module.exports = {
 	},
 	answerRegex:/refresh-all/,
 	message:"Refresh All",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'command',
 		keyword:'refresh all',

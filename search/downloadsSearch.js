@@ -2,6 +2,7 @@ module.exports = {
 	regex:/^d($|.+)/g,
 	answerRegex:/download:(\d+)/,
 	message:"Downloads",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'search',
 		keyword:'d',

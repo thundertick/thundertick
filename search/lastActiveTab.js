@@ -7,6 +7,7 @@ module.exports = {
 	},
 	answerRegex:/stla/,
 	message:"Switch to last tab",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'command',
 		keyword:'Switch to last tab',
@@ -22,7 +23,6 @@ module.exports = {
 
 		chrome.tabs.queryAsync({active:true})
 		.then(function(tabs){
-			console.log(tabs);
 			this.lastTabId = tabs[0].id;
 			this.newTabId = tabs[0].id;
 		}.bind(this));

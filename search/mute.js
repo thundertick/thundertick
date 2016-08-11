@@ -2,6 +2,7 @@ module.exports = {
 	regex:/^m(?:[ute]*)|^u(?:[nmute]*)/g,
 	answerRegex:/^mute:(.+)/,
 	message:"Muting/unmuting",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'command',
 		keyword:'mute',

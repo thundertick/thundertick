@@ -42,6 +42,7 @@ jspm_packages
 
 .DS_Store
 
+manifest.json
 bundle.js
 
 dist

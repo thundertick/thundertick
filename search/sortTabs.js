@@ -8,6 +8,7 @@ module.exports = {
 	},
 	answerRegex:/sort-tabs/,
 	message:"Sort Tabs",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'command',
 		keyword:'sort tabs',

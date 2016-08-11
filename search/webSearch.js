@@ -2,6 +2,7 @@ module.exports = {
 	regex:/^\/(.+)/g,
 	answerRegex:/(google|wiki):(.+)/,
 	message:"Web Search",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'search',
 		keyword:'/',

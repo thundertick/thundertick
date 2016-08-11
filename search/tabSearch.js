@@ -6,6 +6,7 @@ module.exports = {
 	tabs: [],
 	fuse: null,
 	message:"Open tabs",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'search',
 		keyword:'t',

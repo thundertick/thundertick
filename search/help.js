@@ -7,6 +7,7 @@ module.exports = {
 	},
 	answerRegex:/help/,
 	message:"Help",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'command',
 		keyword:'help',

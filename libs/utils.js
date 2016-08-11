@@ -22,6 +22,18 @@ module.exports = {
 			}
 		}
 	},
+	isChrome: function(){
+		if(navigator.userAgent.toLowerCase().indexOf('chrome') != -1)
+			return true;
+		else 
+			return false;
+	},
+	isFirefox: function(){
+		if(navigator.userAgent.toLowerCase().indexOf('firefox') != -1)
+			return true;
+		else 
+			return false;
+	},
 	escapeXml:function(s) {
 		var XML_CHAR_MAP = {
 			'<': '&lt;',

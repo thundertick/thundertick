@@ -5,6 +5,7 @@ module.exports = {
 			return false;
 		return fuzzy.test(query, 'screenshot');
 	},
+	browsers:["chrome"],
 	answerRegex:/^screenshot/,
 	message:"Screenshot",
 	doc:{

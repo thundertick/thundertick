@@ -2,6 +2,7 @@ module.exports = {
 	regex:/^b(.+)/g,
 	answerRegex:/bookmark:(\d+)/,
 	message:"Bookmarks",
+	browsers:["chrome", "firefox"],
 	doc:{
 		type:'search',
 		keyword:'b',
