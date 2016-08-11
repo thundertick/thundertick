@@ -2,6 +2,7 @@ module.exports = {
 	regex:/^find\s([0-9A-Za-z\s]+)/g,
 	answerRegex:/tab-found:(\d+)/,
 	message:"Find text",
+	browsers:["chrome"],
 	onload: function(){
 
 	},

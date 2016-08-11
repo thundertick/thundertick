@@ -4,6 +4,7 @@ module.exports = {
 	regex:/^\d(.+)/,
 	answerRegex:/math:(.+)/,
 	message:"Math",
+	browsers:["chrome","firefox"],
 	doc:{
 		type:'search',
 		keyword:'32*19',

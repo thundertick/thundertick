@@ -6,6 +6,7 @@ module.exports = {
 	tabs: [],
 	fuse: null,
 	message:"Browser history",
+	browsers:["chrome"],
 	doc:{
 		type:'search',
 		keyword:'h',
