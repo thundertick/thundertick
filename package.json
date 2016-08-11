@@ -19,6 +19,7 @@
     "gulp-dest-clean": "^0.5.0",
     "gulp-imagemin": "^3.0.2",
     "gulp-jsmin": "^0.1.5",
+    "gulp-rename": "^1.2.2",
     "gulp-replace-task": "^0.11.0",
     "gulp-zip": "^3.2.0",
     "node-sass": "^3.8.0",
@@ -27,10 +28,13 @@
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "build": "gulp --gulpfile chrome.build.js",
-    "bump:major": "gulp --gulpfile chrome.build.js bump:major",
-    "bump:minor": "gulp --gulpfile chrome.build.js bump:minor",
-    "bump:patch": "gulp --gulpfile chrome.build.js bump:patch"
+    "build:chrome": "gulp --gulpfile build.chrome.js",
+    "build:firefox":"gulp --gulpfile build.firefox.js",
+    "bump:major": "gulp --gulpfile build.chrome.js bump:major",
+    "bump:minor": "gulp --gulpfile build.chrome.js bump:minor",
+    "bump:patch": "gulp --gulpfile build.chrome.js bump:patch",
+    "manifest:chrome":"gulp --gulpfile build.chrome.js manifest:chrome",
+    "manifest:firefox":"gulp --gulpfile build.firefox.js manifest:firefox"
   },
   "author": "",
   "license": "ISC"

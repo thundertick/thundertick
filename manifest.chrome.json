@@ -1,0 +1,29 @@
+{
+  "name": "ThunderTick",
+  "manifest_version":2,
+  "version": "1.3.1",
+  "omnibox": { "keyword" : "`" },
+  "background": {
+    "page": "background.html"
+  },
+  "icons": {
+    "128": "./images/icon128.png"
+  },
+  "key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqbO3cgcahO1gTQNynEdwV/mywPMfOCRYTWLg17f/aPFr13pu8CLiR/4B5WBVRXRKEzB9MIuonIK0YLXFRbNbpU8LPsgkYolQ5lKuQj8gGg+U7xSog2z6J84aphzQXk985Pn883ytOyA49D6OyBJrX7u2CSMEIEA9N5KipvY43pV+krXLUJwbQ6t3V+QXf8/gGSqmYb7KKEYO8uRmZQqKC7U2CSYqA6t38mdn0gx+kzonpjLXLSlZG/7H1j90Cag0stopcpXTta0b6gG7DsNtNYJKfVg73mg++swVpJyPDHRf1XFsDBFjCT4m06nIiIbpk6xDn7KGoXepdnkRxXS7mwIDAQAB",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; font-src 'self' 'unsafe-inline'",
+  "content_scripts":[{
+  	"matches":["*://*/*"],
+  	"js":["./dist/tickbar.js"],
+    "css":["./tickbar/font/OpenSans-Light.css", "./dist/tickbar.css"],
+    "run_at":"document_end"
+  }],
+  "browser_action": {
+    "default_icon": {
+      "128": "images/icon128.png"
+    }
+  },
+  "web_accessible_resources":[
+    "images/*.png"
+  ],
+  "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads","clipboardWrite"]
+}

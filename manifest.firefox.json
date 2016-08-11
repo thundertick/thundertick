@@ -1,0 +1,33 @@
+{
+  "name": "ThunderTick",
+  "manifest_version":2,
+  "version": "1.3.1",
+  "background": {
+    "page": "background.html"
+  },
+  "applications": {
+    "gecko": {
+      "id": "fjlfmlponipgmabidmcmijicbbfnbnnj@thundertick.com"
+    }
+  },
+  "icons": {
+    "128": "./images/icon128.png"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+  "content_scripts":[{
+  	"matches":["*://*/*"],
+  	"js":["./dist/tickbar.js"],
+    "css":["./tickbar/font/OpenSans-Light.css", "./dist/tickbar.css"],
+    "run_at":"document_end"
+  }],
+  "browser_action": {
+    "default_icon": {
+      "128": "images/icon128.png"
+    }
+  },
+  "web_accessible_resources":[
+    "tickbar/font/*",
+    "images/*.png"
+  ],
+  "permissions":["tabs", "history","<all_urls>", "bookmarks", "downloads"]
+}
