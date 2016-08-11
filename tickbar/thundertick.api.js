@@ -1,5 +1,9 @@
 module.exports = function(){
-	const THUNDERTICK = "fjlfmlponipgmabidmcmijicbbfnbnnj";
+	var THUNDERTICK = "fjlfmlponipgmabidmcmijicbbfnbnnj";
+	if(navigator.userAgent.toLowerCase().indexOf('firefox') != -1){
+		THUNDERTICK = "fjlfmlponipgmabidmcmijicbbfnbnnj@thundertick.com";
+	}
+
 	var port = {};
 
 	function connect(){
