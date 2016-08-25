@@ -35,6 +35,8 @@ var tickbarElement = dommy({
 });
 
 cancelTickbar = function(){
+	document.getElementById('tickbar-text').value = "";
+	document.getElementById("tickbar-result-container").innerHTML = ""
 	var tickbarContainer = document.getElementsByClassName('tickbar-container')[0];
 	tickbarContainer.parentNode.removeChild(tickbarContainer);
 	isVisible = false;
@@ -49,7 +51,6 @@ showTickbar = function(){
 	tickbarContainer.className = "tickbar-container fade-in";
 	tickbarContainer.appendChild(tickbarElement);
 	document.body.appendChild(tickbarContainer);
-
 	var tickbar = document.getElementById('tickbar-text')
 	tickbar.focus();
 	tickbar.addEventListener('keyup', textOnChange);
@@ -70,20 +71,61 @@ var textOnChange = function(e){
 			resultContainer.innerHTML = "";
 			for(var i in results){
 				var result = results[i];
-				var resultElement = document.createElement('div');
-				resultElement.className = i==0?"tickbar-result tickbar-selected":"tickbar-result";
-				resultElement.setAttribute("content", result.content);
-				var resultHtml = `
-				<div class="search-name">${result.name?result.name:""}</div>
-				<div class="title">${result.title?result.title:""}</div>
-				<div class="url">${result.url?result.url:""}</div>
-				`;
-				resultElement.innerHTML = resultHtml;
-				resultElement.addEventListener('click', function(){
-					thundertick.select(this.getAttribute('content'));
-					cancelTickbar();
+
+				var resultElement = dommy({
+					tag:'div',
+					attributes:{
+						class:i==0?"tickbar-result tickbar-selected":"tickbar-result",
+						content:result.content
+					},
+					events:{
+						"click": function(){
+							thundertick.select(this.getAttribute('content'));
+							cancelTickbar();
+						}
+					},
+					children:[
+						{
+							tag:'div',
+							attributes:{
+								class:"search-name"
+							},
+							children:[
+								{
+									type:'text',
+									value:result.name?result.name:""
+								}
+							]
+						},
+						{
+							tag:'div',
+							attributes:{
+								class:"title"
+							},
+							children:[
+								{
+									type:'text',
+									value:result.title?result.title:""
+								}
+							]
+						},
+						{
+							tag:'div',
+							attributes:{
+								class:"url"
+							},
+							children:[
+								{
+									type:'text',
+									value:result.url?result.url:""
+								}
+							]
+						},
+					]
 				});
+
 				resultContainer.appendChild(resultElement);
+
 			}
 		});
 	}.bind(this), 200);
