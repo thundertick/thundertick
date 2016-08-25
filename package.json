@@ -4,6 +4,7 @@
   "description": "",
   "main": "background.js",
   "dependencies": {
+    "dommy.js": "0.0.2",
     "fuse.js": "^2.2.0",
     "fuzzyjs": "^2.0.0",
     "lodash.groupby": "^4.4.0",
@@ -29,12 +30,12 @@
   },
   "scripts": {
     "build:chrome": "gulp --gulpfile build.chrome.js",
-    "build:firefox":"gulp --gulpfile build.firefox.js",
+    "build:firefox": "gulp --gulpfile build.firefox.js",
     "bump:major": "gulp --gulpfile build.chrome.js bump:major",
     "bump:minor": "gulp --gulpfile build.chrome.js bump:minor",
     "bump:patch": "gulp --gulpfile build.chrome.js bump:patch",
-    "manifest:chrome":"gulp --gulpfile build.chrome.js manifest:chrome",
-    "manifest:firefox":"gulp --gulpfile build.firefox.js manifest:firefox"
+    "manifest:chrome": "gulp --gulpfile build.chrome.js manifest:chrome",
+    "manifest:firefox": "gulp --gulpfile build.firefox.js manifest:firefox"
   },
   "author": "",
   "license": "ISC"

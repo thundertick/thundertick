@@ -3,13 +3,36 @@ tt = require('./thundertick.api.js');
 thundertick= new tt();
 var isVisible = false;
 
-var tickbarHtml = `
-<div class = "tickbar">
-	<img id = "icon" src = "${chrome.extension.getURL("/images/icon.png")}"></img>
-	<input type = "text" id = "tickbar-text"></input>
-	<div id="tickbar-result-container"></div>
-</div>
-`;
+var dommy = require('dommy.js');
+
+var tickbarElement = dommy({
+	tag:"div",
+	attributes:{
+		class:"tickbar"
+	},
+	children:[
+		{
+			tag:'img',
+			attributes:{
+				id:"icon",
+				src:chrome.extension.getURL("/images/icon.png")
+			}
+		},
+		{
+			tag:'input',
+			attributes:{
+				id:"tickbar-text",
+				type:"text"
+			}
+		},
+		{
+			tag:'div',
+			attributes:{
+				id:"tickbar-result-container"
+			}
+		}
+	]
+});
 
 cancelTickbar = function(){
 	var tickbarContainer = document.getElementsByClassName('tickbar-container')[0];
@@ -24,7 +47,7 @@ showTickbar = function(){
 	isVisible = true;
 	var tickbarContainer = document.createElement('div');
 	tickbarContainer.className = "tickbar-container fade-in";
-	tickbarContainer.innerHTML = tickbarHtml;
+	tickbarContainer.appendChild(tickbarElement);
 	document.body.appendChild(tickbarContainer);
 
 	var tickbar = document.getElementById('tickbar-text')
