@@ -2,6 +2,9 @@ module.exports = {
 	promisifyChrome: function(apis){
 		for(var i in apis){
 			var api = apis[i];
+			if(chrome[api] == undefined){
+				continue;
+			}
 			console.debug("Promisifying chrome." + api);
 			var chromeKeys = Object.keys(chrome[api]);
 			for(var func of chromeKeys){
