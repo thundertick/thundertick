@@ -1,7 +1,7 @@
 {
   "name": "ThunderTick",
   "manifest_version":2,
-  "version": "1.4.0",
+  "version": "1.4.1",
   "background": {
     "page": "background.html"
   },
