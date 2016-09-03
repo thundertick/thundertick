@@ -29,5 +29,5 @@
     "tickbar/font/*",
     "images/*.png"
   ],
-  "permissions":["tabs","<all_urls>", "bookmarks", "downloads"]
+  "permissions":["tabs","<all_urls>", "bookmarks", "downloads","storage"]
 }

@@ -25,5 +25,5 @@
   "web_accessible_resources":[
     "images/*.png"
   ],
-  "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads","clipboardWrite"]
+  "permissions":["tabs","history", "<all_urls>", "bookmarks", "downloads","clipboardWrite","storage"]
 }

@@ -70,6 +70,9 @@ var textOnChange = function(e){
 	timeout = setTimeout(function(){
 		var query = e.target.value;
 		thundertick.search(query, function(results){
+            if(!isVisible){
+                return;
+            }
 			var resultContainer = document.getElementById('tickbar-result-container');
 			resultContainer.innerHTML = "";
 			for(var i in results){
@@ -134,23 +137,47 @@ var textOnChange = function(e){
 	}.bind(this), 200);
 }
 
-Mousetrap(window).bind('`', function(e){
-	//Hide tickbar
-	if(e.target.id == "tickbar-text"){
-		showTickbar();
-	}
+function hotkeyBinding(e){
+    //Hide tickbar
+    if(e.target.id == "tickbar-text"){
+        showTickbar();
+    }
+    if(e.target.tagName && (e.target.tagName.toLowerCase() == "input" || e.target.tagName.toLowerCase() == "textarea" || e.target.getAttribute('contentEditable') != undefined)) {
+        return;
+    }
+    showTickbar();
+    e.preventDefault();
+}
 
-	if(e.target.tagName && (e.target.tagName.toLowerCase() == "input" || e.target.tagName.toLowerCase() == "textarea" || e.target.getAttribute('contentEditable') != undefined)) {
-		return;
-	}
+chrome.storage.local.get("hotkey", function(hotkey){
+    var key = '';
+    if(!hotkey.hotkey){
+        key = '`';
+        chrome.storage.local.set({hotkey:key}); //Triggers onChanged Event
+    } else {
+        key = hotkey.hotkey;
+        Mousetrap.bind(key, hotkeyBinding, "keydown");
+    }
+});
 
-	showTickbar();
-	e.preventDefault();
+chrome.storage.onChanged.addListener(function(changes){
+    if(changes.hotkey == undefined){
+        return;
+    }
+    if(changes.hotkey.oldValue)
+        Mousetrap.unbind(changes.hotkey.oldValue, "keydown");
 
-}, 'keydown');
+    if(!changes.hotkey.newValue){
+        chrome.storage.local.set({hotkey:"`"}); //retrigger onChanged
+        return;
+    }
+    
+    Mousetrap.bind(changes.hotkey.newValue, hotkeyBinding, "keydown");
+
+});
 
 
-Mousetrap(window).bind('escape', function(e){
+Mousetrap.bind('escape', function(e){
 	if(!isVisible){
 		return;
 	}
@@ -163,7 +190,7 @@ Mousetrap(window).bind('escape', function(e){
     Handles arrow up and down
 */
 
-Mousetrap(window).bind('down', function(e){
+Mousetrap.bind('down', function(e){
     if(!isVisible){
         return;
     }
@@ -189,7 +216,7 @@ Mousetrap(window).bind('down', function(e){
     }
 },'keydown');
 
-Mousetrap(window).bind('up', function(e){
+Mousetrap.bind('up', function(e){
     if(!isVisible){
         return;
     }
@@ -219,7 +246,7 @@ Mousetrap(window).bind('up', function(e){
 	Handles selection of result
 */
 
-Mousetrap(window).bind('enter', function(e){
+Mousetrap.bind('enter', function(e){
     if(!isVisible){
         return;
     }
