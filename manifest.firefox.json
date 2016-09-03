@@ -10,6 +10,10 @@
       "id": "fjlfmlponipgmabidmcmijicbbfnbnnj@thundertick.com"
     }
   },
+  "options_ui": {
+    "page": "pages/settings/index.html",
+    "open_in_tab":true
+  },
   "icons": {
     "128": "./images/icon128.png"
   },

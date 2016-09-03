@@ -63,7 +63,7 @@ gulp.task('webpack', function (cb) {
 });
 
 gulp.task('movefiles', ['clean-scripts', 'webpack'], function(cb){
-	return gulp.src(['background.html','pages/help/index.html', 'pages/install/index.html', 'tickbar/font/OpenSans-Light_gdi.*'])
+	return gulp.src(['background.html','pages/help/index.html', 'pages/install/index.html','pages/settings/index.html', 'tickbar/font/OpenSans-Light_gdi.*'])
 	.pipe(gulpCopy('builds/chrome', {}));
 });
 

@@ -6,6 +6,7 @@
   "background": {
     "page": "background.html"
   },
+  "options_page": "pages/settings/index.html",
   "icons": {
     "128": "./images/icon128.png"
   },
