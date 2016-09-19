@@ -13,6 +13,7 @@ require('./search/screenshot.js'),
 require('./search/lastActiveTab.js'),
 require('./search/help.js'),
 require('./search/settings.js'),
+require('./search/fbshare.js'),
 ];
 var utils = require('./libs/utils.js');
 var API = require('./api.js');
