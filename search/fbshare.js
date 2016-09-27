@@ -5,7 +5,7 @@ module.exports = {
 			return false;
 		return fuzzy.test(query, 'facebook share');
 	},
-	answerRegex:/^(share:)(.+)/,
+	answerRegex:/^share:(.+)/,
 	message:"Facebook Share",
 	browsers:["chrome","firefox"],
 	doc:{
@@ -27,6 +27,7 @@ module.exports = {
 	},
 	suggestion: function(suggestion){
 		var shareUrl = this.answerRegex.exec(suggestion)[1];
+		console.log(shareUrl);
 		chrome.windows.create({
 			url:"https://www.facebook.com/sharer.php?u="+encodeURIComponent(shareUrl),
 			width:600,
